@@ -2,6 +2,7 @@ TagMechanicMod (A Sigil Plugin)
 ============
 
 Original author: DiapDealer
+
 Modification: BeckyDTP
 
 A Sigil plugin that helps users manipulate/remove spans, divs and other elements based on their attributes (or lack thereof) in a nesting-safe manner.
@@ -69,5 +70,3 @@ License Information
 ### TagMechanicMod (a Sigil plugin)
 
     Licensed under the GPLv3.
-
-
