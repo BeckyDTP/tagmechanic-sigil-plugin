@@ -32,6 +32,33 @@ _t = QCoreApplication.translate
 
 
 def launch_gui(bk, prefs):
+    # Becky START
+    global file_list
+    global selectedallmessage
+    global selectedallmessagekolor
+
+    selected_files = []
+    all_files = []
+    for file_name in list(bk.selected_iter()):
+        if bk.id_to_mime(file_name[1]) == 'application/xhtml+xml':
+            selected_files.append(("manifest", file_name[1]))
+
+    # get all files
+    for id_type, href in bk.text_iter():
+         all_files.append(("manifest", id_type))
+
+    if selected_files != []:
+        selectedallmessage = 'Processing selected files...'
+        #selectedallmessage = 'Przetwarzanie zaznaczonych plików...'
+        selectedallmessagekolor = 'QLabel {color: #2ECC72;}'
+        file_list = selected_files
+    else:
+        #selectedallmessage = 'Przetwarzanie wszystkich plików...'
+        selectedallmessage = 'Processing all files...'
+        selectedallmessagekolor = 'QLabel {color: #BE1055;}'
+        file_list = all_files
+    # Becky END
+
     if not ismacos:
         try:
             setup_highdpi(bk._w.highdpi)
@@ -286,7 +313,9 @@ class guiMain(QMainWindow):
         MODIFY_STR = _t('guiMain', 'Modify')
         self.NO_ATTRIB_STR = _t('guiMain', 'No attributes (naked tag)')
         self.NO_CHANGE_STR = _t('guiMain', 'No change')
-        self.setWindowTitle(_t('guiMain', 'Tag Mechanic'))
+        # Becky START
+        self.setWindowTitle(_t('guiMain', 'Tag Mechanic') + ' MOD')
+        # Becky END
 
         configAct = QAction(_t('guiMain', '&Config'), self)
         configAct.triggered.connect(self.showConfig)
@@ -300,6 +329,18 @@ class guiMain(QMainWindow):
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
+
+        # Becky START
+        file_list_layout = QHBoxLayout()
+        layout.addLayout(file_list_layout)
+        self.label = QLabel()
+        font = QFont()
+        font.setPointSize(14)
+        self.label.setFont(font)
+        self.label.setText(selectedallmessage)
+        self.label.setStyleSheet(selectedallmessagekolor)
+        file_list_layout.addWidget(self.label)
+        # Becky END
 
         action_layout = QHBoxLayout()
         layout.addLayout(action_layout)
@@ -487,10 +528,14 @@ class guiMain(QMainWindow):
         self.text_panel.insertHtml('<h4>{}...</h4><br>'.format(_t('guiMain', 'Starting')))
 
         # Loop through the files selected in Sigil's Book View
-        for (typ, ident) in self.bk.selected_iter():
+        # Becky START
+        # for (typ, ident) in self.bk.selected_iter():
+        for (typ, ident) in file_list:
+
             # Skip the ones that aren't the "Text" mimetype.
-            if self.bk.id_to_mime(ident) != 'application/xhtml+xml':
-                continue
+            # if self.bk.id_to_mime(ident) != 'application/xhtml+xml':
+            #     continue
+        # Becky END
             href = self.bk.id_to_href(ident)
             # Param 1 - the contents of the (x)html file.
             criteria['html'] = self.bk.readfile(ident)
@@ -504,7 +549,7 @@ class guiMain(QMainWindow):
             try:
                 html, occurrences = parser.processml()
             except Exception:
-                self.text_panel.insertHtml('<p>{} {}! {}.</p>\n'.format(
+                self.text_panel.insertHtml('<p>{} {}! {}.<br></p>'.format(
                         _t('guiMain', 'Error parsing'), href, _t('guiMain', 'File skipped')))
                 continue
 
@@ -513,10 +558,10 @@ class guiMain(QMainWindow):
             if occurrences:
                 # write changed markup back to file
                 self.bk.writefile(ident, html)
-                self.text_panel.insertHtml('<p>{} {}:&#160;&#160;&#160;{}</p>\n'.format(
+                self.text_panel.insertHtml('<p>{} {}:&#160;&#160;&#160;{}<br></p>'.format(
                     _t('guiMain', 'Occurrences found/changed in'), href, int(occurrences)))
             else:
-                self.text_panel.insertHtml('<p>{} {}</p>\n'.format(
+                self.text_panel.insertHtml('<p style="color: #BE1055;">{} {}<br></p>'.format(
                     _t('guiMain', 'Criteria not found in'), href))
 
         # report totals
@@ -524,7 +569,7 @@ class guiMain(QMainWindow):
             self.quit_button.setText(_t('guiMain', 'Commit and Exit'))
             self.quit_button.setToolTip('<p>{}'.format(_t('guiMain', 'Commit all changes and exit')))
             self.abort_button.setDisabled(False)
-            self.text_panel.insertHtml('<br><h4>{}:&#160;&#160;&#160;{}</h4>'.format(
+            self.text_panel.insertHtml('<h4><br>{}:&#160;&#160;&#160;{}</h4>'.format(
                 _t('guiMain', 'Total occurrences found/changed'), int(totals)))
         else:
             self.text_panel.insertHtml('<br><h4>{}</h4>'.format(

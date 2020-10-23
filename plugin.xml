@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-<name>TagMechanic</name>
+<name>TagMechanicMod</name>
 <type>edit</type>
-<author>DiapDealer</author>
+<author>DiapDealer+Becky</author>
 <description>Manipulate Spans, Divs and other tags.</description>
 <engine>python3.4</engine>
 <engine>python2.7</engine>

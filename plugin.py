@@ -20,14 +20,16 @@ def run(bk):
         print('Error: The %s plugin requires Sigil version 0.8.900 or higher.' % bk._w.plugin_name)
         return -1
 
+    # Becky START
     # Fail if no Text files are selected in Sigil's Book Browser
-    count = 0
-    for (typ, ident) in bk.selected_iter():
-        if bk.id_to_mime(ident) == 'application/xhtml+xml':
-            count += 1
-    if not count:
-        print('No text files selected in Book Browser!')
-        return -1
+    # count = 0
+    # for (typ, ident) in bk.selected_iter():
+    #     if bk.id_to_mime(ident) == 'application/xhtml+xml':
+    #         count += 1
+    # if not count:
+    #     print('No text files selected in Book Browser!')
+    #     return -1
+    # Becky END
 
     global prefs
 

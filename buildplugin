@@ -15,7 +15,7 @@ import optparse
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-PLUGIN_NAME = 'TagMechanic'
+PLUGIN_NAME = 'TagMechanicMod'
 TEMP_DIR = os.path.join(SCRIPT_DIR, PLUGIN_NAME)
 TRANS_NAME = 'translations'
 TRANS_SRC = os.path.join(SCRIPT_DIR, TRANS_NAME)
