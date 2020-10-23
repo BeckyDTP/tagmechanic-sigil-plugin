@@ -1,5 +1,8 @@
-TagMechanic (A Sigil Plugin)
+TagMechanicMod (A Sigil Plugin)
 ============
+
+Original author: DiapDealer
+Modification: BeckyDTP
 
 A Sigil plugin that helps users manipulate/remove spans, divs and other elements based on their attributes (or lack thereof) in a nesting-safe manner.
 
@@ -9,7 +12,7 @@ Links
 =====
 
 * Sigil website is at http://sigil-ebook.com
-* The TagMechanic plugin support thread on MobileRead: <http://www.mobileread.com/forums/showthread.php?t=270639>
+* The Original TagMechanic plugin support thread on MobileRead: <http://www.mobileread.com/forums/showthread.php?t=270639>
 
 
 Building
@@ -17,15 +20,15 @@ Building
 
 First, clone the repo and cd into it:
 
-    $ git clone https://github.com/dougmassay/tagmechanic-sigil-plugin.git
-    $ cd ./tagmechanic-sigil-plugin
+    $ git clone https://github.com/BeckyDTP/tagmechanicmod-sigil-plugin.git
+    $ cd ./tagmechanicmod-sigil-plugin
 
 
 To create the plugin zip file, run the buildplugin.py script (root of the repository tree) with Python (2 or 3)
 
     $./buildplugin (so long as buildplugin's executable bit is set, otherwise ... $python ./buildplugin)
 
-This will create the TagMechanic_vX.X.X.zip file that can then be installed into Sigil's plugin manager.
+This will create the TagMechanicMod_vX.X.X.zip file that can then be installed into Sigil's plugin manager.
 
 Contributing / Modifying
 ============
@@ -63,7 +66,7 @@ To any potential volunteer translators: There's nothing terribly complicated. Ju
 License Information
 =======
 
-### TagMechanic (a Sigil plugin)
+### TagMechanicMod (a Sigil plugin)
 
     Licensed under the GPLv3.
 
