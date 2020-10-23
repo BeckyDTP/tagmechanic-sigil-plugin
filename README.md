@@ -25,7 +25,7 @@ First, clone the repo and cd into it:
     $ cd ./tagmechanicmod-sigil-plugin
 
 
-To create the plugin zip file, run the buildplugin.py script (root of the repository tree) with Python (2 or 3)
+To create the plugin zip file, run the buildplugin script (root of the repository tree) with Python (2 or 3)
 
     $./buildplugin (so long as buildplugin's executable bit is set, otherwise ... $python ./buildplugin)
 
@@ -61,7 +61,7 @@ Feel free to fork the repository and submit pull requests (or just use it privat
 Files used for translations:
     > translations/template.ts
 
-To any potential volunteer translators: There's nothing terribly complicated. Just a bunch of strings strings that probably won't be changing much (if at all) in the future. Contact me if you're interested in translating the plugin. The gist is this: fork the repo; copy the template.ts file (in the translations folder) to tagmechanic_(pl|es|fr).ts (or whatever your language's code is) and use Qt's Linguist to translate the strings. Then submit a pull request and I'll compile the language files for use in the plugin.
+To any potential volunteer translators: There's nothing terribly complicated. Just a bunch of strings strings that probably won't be changing much (if at all) in the future. Contact me if you're interested in translating the plugin. The gist is this: fork the repo; copy the template.ts file (in the translations folder) to tagmechanicmod_(pl|es|fr).ts (or whatever your language's code is) and use Qt's Linguist to translate the strings. Then submit a pull request and I'll compile the language files for use in the plugin.
 
 
 License Information
