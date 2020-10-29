@@ -16,7 +16,7 @@ _plat = sys.platform.lower()
 iswindows = 'win32' in _plat or 'win64' in _plat
 ismacos = isosx = 'darwin' in _plat
 
-url = 'https://raw.githubusercontent.com/dougmassay/tagmechanic-sigil-plugin/master/checkversion.xml'
+url = 'https://raw.githubusercontent.com/beckydtp/tagmechanicmod-sigil-plugin/mod/checkversion.xml'
 delta = 12
 
 
@@ -259,7 +259,7 @@ def main():
     '''Used to test outside of Sigil'''
     class w():
         def __init__(self):
-            w.plugin_name = 'TagMechanic'
+            w.plugin_name = 'TagMechanicMod'
             w.plugin_dir = '/home/dmassay/.local/share/sigil-ebook/sigil/plugins'
 
     tmedt = str(datetime.now() - timedelta(hours=delta+1))
