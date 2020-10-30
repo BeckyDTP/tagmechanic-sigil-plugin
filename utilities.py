@@ -253,7 +253,9 @@ class UpdateChecker():
             # if online version is newer, make sure it hasn't been seen already
             if _online_version is not None and tuple_version(_online_version) > tuple_version(_current_version) and _online_version != self.lastonlineversion:
                 return True, _online_version, str(datetime.now())
-        return False, _online_version, str(datetime.now())
+        #return False, _online_version, str(datetime.now())
+        #Becky: Message about new version is displayed always
+        return True, self.lastonlineversion, str(datetime.now())
 
 def main():
     '''Used to test outside of Sigil'''

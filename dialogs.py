@@ -309,6 +309,10 @@ class guiMain(QMainWindow):
         self.setup_ui()
 
     def setup_ui(self):
+        app = QApplication.instance()
+        p = app.palette()
+        link_color = p.color(p.Active, p.Link).name()
+
         DELETE_STR = _t('guiMain', 'Delete')
         MODIFY_STR = _t('guiMain', 'Modify')
         self.NO_ATTRIB_STR = _t('guiMain', 'No attributes (naked tag)')
@@ -331,6 +335,14 @@ class guiMain(QMainWindow):
         self.setCentralWidget(widget)
 
         # Becky START
+        if self.update:
+            update_layout = QHBoxLayout()
+            layout.addLayout(update_layout)
+            self.label = QLabel()
+            self.label.setText(_t('guiMain', 'Plugin Update Available') + ' ' + str(self.newversion))
+            self.label.setStyleSheet('QLabel {{color: {};}}'.format(link_color))
+            update_layout.addWidget(self.label)
+
         file_list_layout = QHBoxLayout()
         layout.addLayout(file_list_layout)
         self.label = QLabel()
